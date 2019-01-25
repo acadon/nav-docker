@@ -23,6 +23,7 @@ You must map a folder on the host with the NAVDVD content to $navDvdPath"
     exit 1
 }
 
+InstallPrerequisite -Name "SharePoint Client Components" -MsiPath "$NavDvdPath\Prerequisite Components\SharePoint Client Components\sharepointclientcomponents_x64.msi" -MsiUrl "https://download.microsoft.com/download/E/1/9/E1987F6C-4D0A-4918-AEFE-12105B59FF6A/sharepointclientcomponents_15-4711-1001_x64_en-us.msi"
 InstallPrerequisite -Name "Url Rewrite" -MsiPath "$NavDvdPath\Prerequisite Components\IIS URL Rewrite Module\rewrite_2.0_rtw_x64.msi" -MsiUrl "https://download.microsoft.com/download/C/9/E/C9E8180D-4E51-40A6-A9BF-776990D8BCA9/rewrite_amd64.msi"
 InstallPrerequisite -Name "OpenXML" -MsiPath "$NavDvdPath\Prerequisite Components\Open XML SDK 2.5 for Microsoft Office\OpenXMLSDKv25.msi" -MsiUrl "https://download.microsoft.com/download/5/5/3/553C731E-9333-40FB-ADE3-E02DC9643B31/OpenXMLSDKV25.msi"
 
@@ -90,6 +91,7 @@ Copy-Item -Path (Join-Path $roleTailoredClientFolder "*office*.dll") -Destinatio
 Copy-Item -Path (Join-Path $runPath 'Install\hlink.dll') -Destination (Join-Path $roleTailoredClientFolder 'hlink.dll')
 Copy-Item -Path (Join-Path $runPath 'Install\hlink.dll') -Destination (Join-Path $serviceTierFolder 'hlink.dll')
 Copy-Item -Path (Join-Path $runPath 'Install\t2embed.dll') -Destination "c:\windows\system32\t2embed.dll"
+Copy-Item -Path (Join-Path $runPath 'Install\Microsoft.IdentityModel.dll') -Destination (Join-Path $serviceTierFolder 'Microsoft.IdentityModel.dll')
 
 $reportBuilderPath = "C:\Program Files (x86)\ReportBuilder"
 $reportBuilderSrc = Join-Path $runPath 'Install\ReportBuilder2016'
